@@ -1,0 +1,82 @@
+统计文本中特定字符的次数：
+egrep –o  '*****'  filename | wc  -l
+
+shell中单引号与双引号区别：
+[root@linux ~]# name=TekTea
+[root@linux ~]# echo $name
+TekTea
+[root@linux ~]# sayhello=”Hello $name”
+[root@linux ~]# echo $sayhello
+Hello TekTea
+[root@linux ~]# sayhello='Hello $name'
+[root@linux ~]# echo $stopsayhello
+Hello $name
+
+
+斜引号：
+引住的命令（command）执行结果能赋值给一个变量
+A=`ls -l`
+把ls -l的结果赋给A 
+ls -l 作为命令来执行
+
+
+批量修改文件名：
+#!/bash
+for file in `ls | grep “.txt”`
+do
+        newfile=`echo $file | sed 's/result180_e//g'`
+        mv $file $newfile
+done
+若要在文件名前加字符，则 newfile=”要添加的字符”$file
+
+
+
+
+vim下全选复制：
+命令行模式下 ggyG
+
+
+vim 在好几行开头添加相同的东西：
+ctrl+v 然后shift+i 输入要添加的内容后esc
+
+
+vim 替换中存在/
+:s/abc/\/abc/ 表示吧abc换成/abc
+
+
+后台运行程序
+nohup python w_18-t_19_wmt.py 2>&1 >log.out &
+
+
+
+解压文件：
+tar  –xzvf  FileName tar.gz
+gzip  -d  FileName.gz
+
+
+for 和 sed结合：
+#!/bash
+for i in `seq -w 02 15`
+do
+
+        cd "$i$((10#$i+15))"
+        cp ../0116task__assign.py ./
+        a=$i
+        b=$((10#$i+15))
+        sed -i "s/2016-10-01/2016-10-$a/g" 0116task__assign.py
+        sed -i "s/gongren/$a/g" 0116task__assign.py
+        sed -i "s/renwu/$b/g" 0116task__assign.py
+        nohup python3 0116task__assign.py 2>&1 log.txt &
+
+        cd ..
+done
+
+
+批量解压文件
+#!/bin/sh
+for i in $(ls *.zip)
+do
+        unzip $i
+done
+
+
