@@ -80,3 +80,7 @@ do
 done
 
 
+
+查看某个文件夹的大小
+du --max-depth=1 -h /home
+
