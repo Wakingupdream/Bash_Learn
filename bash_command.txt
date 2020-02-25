@@ -84,3 +84,7 @@ done
 查看某个文件夹的大小
 du --max-depth=1 -h /home
 
+
+
+前半部分截取前十个字符，后半部分提取以开头的行 (管道 sed替换 sed抽取)
+sed  -r 's/(.{10}).*/\1/' result.txt  | sed -n '/1.*/p'  
